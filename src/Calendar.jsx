@@ -371,6 +371,10 @@ let Calendar = React.createClass({
     return views[this.props.view];
   },
 
+  _showMore(){
+    this.props.onShowMore(events, date, slot);
+  },
+
   render() {
     let {
         view, toolbar, events

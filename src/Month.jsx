@@ -104,7 +104,7 @@ let MonthView = React.createClass({
     window.removeEventListener('resize', this._resizeListener, false)
   },
   getActiveWeek(weeks){
-    let activeWeekIndex = 0
+    let activeWeekIndex = 0;
     weeks.forEach((week, index)=>{
         week.forEach((day)=>{
         if(dates.eq(day, new Date(), 'day')) activeWeekIndex = index;
