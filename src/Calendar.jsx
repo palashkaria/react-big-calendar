@@ -159,6 +159,16 @@ let Calendar = React.createClass({
       PropTypes.shape({ x: PropTypes.number, y: PropTypes.number })
     ]),
     /**
+     *
+     *
+     */
+    onShowMore: PropTypes.func,
+    /**
+     *
+     *
+     */
+    onHideMore: PropTypes.func,
+    /**
      * Allows mouse selection of ranges of dates/times.
      */
     selectable: PropTypes.bool,
@@ -371,8 +381,12 @@ let Calendar = React.createClass({
     return views[this.props.view];
   },
 
-  _showMore(){
-    this.props.onShowMore(events, date, slot);
+  _showMore(date, events, position){
+    this.props.onShowMore && this.props.onShowMore(date, events, position);
+  },
+
+  _onHideMore(date, events, position){
+    this.props.onHideMore && this.props.onHideMore(date, events, position);
   },
 
   render() {
@@ -432,6 +446,7 @@ let Calendar = React.createClass({
           onSelectEvent={this._select}
           onSelectSlot={this._selectSlot}
           onShowMore={this._showMore}
+          onHideMore={this._onHideMore}
         />
       </div>
     );

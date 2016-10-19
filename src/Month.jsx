@@ -112,6 +112,7 @@ let MonthView = React.createClass({
     });
     return activeWeekIndex;
   },
+
   render() {
     let { date, culture, weekdayFormat, className } = this.props
       , month = dates.visibleDays(date, culture)
@@ -130,7 +131,8 @@ let MonthView = React.createClass({
         { weeks.map((week, idx) =>
             this.renderWeek(week, idx, measure && this._renderMeasureRows))
         }
-        { this.props.popup && this.state.overlay?this._renderOverlay():null}
+        { this.props.popup &&
+            this._renderOverlay()}
       </div>
     )
   },
@@ -298,7 +300,10 @@ let MonthView = React.createClass({
         placement='bottom'
         container={this}
         show={!!overlay.position}
-        onHide={() => this.setState({ overlay: null })}
+        onHide={() =>{
+          this.props.onHideMore(overlay.date, overlay.events, overlay.position);
+          this.setState({ overlay: null })
+        }}
       >
         <Popup
           {...this.props}
@@ -363,9 +368,9 @@ let MonthView = React.createClass({
 
     //cancel any pending selections so only the event click goes through.
     this.clearSelection()
-
+    let position;
     if (this.props.popup) {
-      let position = getPosition(cell, findDOMNode(this));
+      position = getPosition(cell, findDOMNode(this));
 
       this.setState({
         overlay: { date, events, position }
@@ -375,7 +380,7 @@ let MonthView = React.createClass({
       notify(this.props.onNavigate, [navigate.DATE, date])
     }
 
-    notify(this.props.onShowMore, [events, date, slot])
+    notify(this.props.onShowMore, [date, events, position])
   },
 
   clearSelection(){
