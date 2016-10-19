@@ -254,8 +254,11 @@ let MonthView = React.createClass({
     return dates.range(first, last, 'day').map((day, idx) =>
       <div
         key={'header_' + idx}
-        className='rbc-header'
         style={segStyle(1, 7)}
+        className={cn('rbc-header',{
+          'rbc-now': dates.eq(day, new Date(), 'day'),
+          'rbc-current': dates.eq(day, this.props.date, 'day')
+          })}
       >
         { localizer.format(day, format, culture) }
       </div>
