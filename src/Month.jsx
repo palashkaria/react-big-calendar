@@ -103,7 +103,15 @@ let MonthView = React.createClass({
   componentWillUnmount() {
     window.removeEventListener('resize', this._resizeListener, false)
   },
-
+  getActiveWeek(weeks){
+    let activeWeekIndex = 0
+    weeks.forEach((week, index)=>{
+        week.forEach((day)=>{
+        if(dates.eq(day, new Date(), 'day')) activeWeekIndex = index;
+      });
+    });
+    return activeWeekIndex;
+  },
   render() {
     let { date, culture, weekdayFormat, className } = this.props
       , month = dates.visibleDays(date, culture)
@@ -112,11 +120,12 @@ let MonthView = React.createClass({
     let measure = this.state.needLimitMeasure
 
     this._weekCount = weeks.length;
+    let activeWeek = this.getActiveWeek(weeks);
 
     return (
       <div className={cn('rbc-month-view', className)}>
         <div className='rbc-row rbc-month-header'>
-          {this._headers(weeks[0], weekdayFormat, culture)}
+          {this._headers(weeks[activeWeek], weekdayFormat, culture)}
         </div>
         { weeks.map((week, idx) =>
             this.renderWeek(week, idx, measure && this._renderMeasureRows))
