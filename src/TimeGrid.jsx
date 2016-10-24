@@ -268,7 +268,10 @@ export default class TimeGrid extends Component {
     return range.map((date, i) =>
       <div
         key={i}
-        className='rbc-header'
+        className={cn('rbc-header',{
+          'rbc-now': dates.eq(date, new Date(), 'day'),
+          'rbc-current': dates.eq(date, this.props.date, 'day')
+          })}
         style={segStyle(1, this._slots)}
       >
         <a href='#' onClick={this._headerClick.bind(null, date)}>
