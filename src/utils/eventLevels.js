@@ -89,16 +89,13 @@ export function sortEvents(evtA, evtB, { startAccessor, endAccessor, allDayAcces
         get(evtB, startAccessor)
       , dates.ceil(get(evtB, endAccessor), 'day')
       , 'day');
-   if(allDaySortKey){
-    if(get(evtA, allDaySortKey) > get(evtB, allDaySortKey)){
-      return 1
-    }
-    else if(get(evtA, allDaySortKey) < get(evtB, allDaySortKey)){
-      return -1;
-    }
-  }
+  let allDaySortA = get(evtA, allDaySortKey);
+  let allDaySortB = get(evtB, allDaySortKey);
+  let sortAllDay = allDaySortA && allDaySortB? allDaySortA.localeCompare(allDaySortB):0;
+
   return startSort // sort by start Day first
     || Math.max(durB, 1) - Math.max(durA, 1) // events spanning multiple days go first
     || !!get(evtB, allDayAccessor) - !!get(evtA, allDayAccessor) // then allDay single day events
     || +get(evtA, startAccessor) - +get(evtB, startAccessor)     // then sort by start time
+    || sortAllDay //then sort by the sorting key [if present]
 }
