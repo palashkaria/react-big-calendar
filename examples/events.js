@@ -2,6 +2,48 @@ export default [
   {
     'title': 'All Day Event',
     'allDay': true,
+    'start': new Date(2015, 3, 0, 3, 30, 0),
+    'end': new Date(2015, 3, 0, 4, 30, 0),
+  },
+  {
+    'title': '1',
+    'allDay': true,
+    'start': new Date(2015, 3, 0, 1, 30, 0),
+    'end': new Date(2015, 3, 0, 1, 45, 0),
+  },
+  {
+    'title': 'zzzzzzz',
+    'allDay': true,
+    'start': new Date(2015, 3, 0, 1, 24, 0),
+    'end': new Date(2015, 3, 0, 1, 45, 0),
+  },
+  {
+    'title': '2',
+    'allDay': true,
+    'start': new Date(2015, 3, 0),
+    'end': new Date(2015, 3, 0)
+  },
+  {
+    'title': 'z',
+    'allDay': true,
+    'start': new Date(2015, 3, 0),
+    'end': new Date(2015, 3, 0)
+  },
+  {
+    'title': 'f',
+    'allDay': true,
+    'start': new Date(2015, 3, 0),
+    'end': new Date(2015, 3, 0)
+  },
+  {
+    'title': 'b',
+    'allDay': true,
+    'start': new Date(2015, 3, 0),
+    'end': new Date(2015, 3, 0)
+  },
+  {
+    'title': 'l',
+    'allDay': true,
     'start': new Date(2015, 3, 0),
     'end': new Date(2015, 3, 0)
   },

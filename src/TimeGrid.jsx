@@ -232,7 +232,7 @@ export default class TimeGrid extends Component {
         )}
         style={style}
       >
-        <div className='rbc-row'>
+        <div className='rbc-row rbc-header-row'>
           <div
             className='rbc-label rbc-header-gutter'
             style={{ width }}
